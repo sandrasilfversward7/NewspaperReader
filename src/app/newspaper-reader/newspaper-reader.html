@@ -1,0 +1,77 @@
+
+
+<!--#articleForm skapar en lokal referens i temlaten med namnet articleForm
+="ngForm" säger att referesen ska peka på angularas gormulärobjekt, 
+DVS det som står för ViewChild - för att koppla ihop-->
+
+    <!-- ngModel betyder two-way binding-->
+
+<div class="container mt-4">
+<h1>Newspaper Reader </h1>
+
+<form #articleForm="ngForm">
+    <div class="mb-3">
+    <label>Title</label>
+        <input
+            type="text"
+            name="title"
+            [(ngModel)]="article.title"
+            class= "form-control"
+        >
+    </div>
+
+    <div class="mb-3">
+    <label>Subtitle</label>
+        <input
+            type="text"
+            name="subtitle"
+            [(ngModel)]="article.subtitle"
+            class= "form-control"
+        >
+    </div>
+
+    <div class="mb-3">
+    <label>Body</label>
+        <textarea
+            name="body"
+            [(ngModel)]="article.body"
+            class= "form-control">
+        </textarea>
+    </div>
+
+    <div class="mb-3">
+    <label> abstract </label>
+        <textarea
+            name="abstract"
+            class= "form-control"
+            [(ngModel)]="article.abstract">
+        </textarea>
+    </div>
+
+    <div class="mb-3">
+    <label>Category</label>
+        <select
+            name="category"
+            class= "form-select"
+            [(ngModel)]="article.category">
+                <option value="National">National</option>
+                <option value="International">International</option>
+                <option value="Sports">Sports</option>
+                <option value="Economy">Economy</option>
+        </select>
+    </div>
+
+    <button type="button"  class="btn btn-primary me-2" (click)="sendForm()">Send</button>
+    <button type="button" class="btn btn-secondary" (click)="clear()">Clean</button>
+
+    <div class="mt-4 p-3 border rounded">
+    <p>Preview: {{ article.title }}</p> <!--Visar bara värdet som redan finns i article.title-->
+    <p>Preview: {{ article.subtitle }}</p> <!--Visar bara värdet som redan finns i article.title-->
+    <p>Preview: {{ article.body }}</p>
+    <p>Preview: {{ article.category }}</p>
+    </div>
+
+
+
+  </form>
+</div>

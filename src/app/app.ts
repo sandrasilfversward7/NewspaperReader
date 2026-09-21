@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { NewspaperReader } from './newspaper-reader/newspaper-reader';
+import { ArticlesList } from './articles-list/articles-list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NewspaperReader, ArticlesList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('NewsPaperReader');
 }

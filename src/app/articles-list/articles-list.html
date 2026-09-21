@@ -1,0 +1,121 @@
+
+<form #articleForm = "ngForm">
+    <label> Title </label>
+    <input 
+        type="text"
+        [(ngModel)]="article.title"
+        name="title"
+        #title="ngModel"
+        minlength="10"
+        maxlength="50"
+        required
+        appHighlight
+        [ngClass]="title.valid || title.pristine ? '' : 'bg-danger'"
+        >
+
+    <label> Subtitle </label>
+    <input 
+        type="text"
+        [(ngModel)]="article.subtitle"
+        name="subtitle"
+        #subtitle="ngModel"
+        minlength="10"
+        maxlength="50"
+        required
+        appHighlight
+        [ngClass]="subtitle.valid || subtitle.pristine ? '' : 'bg-danger'"
+        >
+
+    <label> Abstract </label>
+    <input 
+        type="text"
+        [(ngModel)]="article.abstract"
+        name="abstract"
+        #abstract="ngModel"
+        minlength="10"
+        required 
+        appHighlight
+        [ngClass]="abstract.valid || abstract.pristine ? '' : 'bg-danger'"
+        >
+
+    <label> Body </label>
+    <input 
+        type="text"
+        [(ngModel)]="article.body"
+        name="body"
+        #body="ngModel"
+        appHighlight
+        >
+
+    <label>Category</label>
+        <select
+            name="category"
+            #category="ngModel"
+            class= "form-select"
+            appHighlight            
+            [(ngModel)]="article.category">
+                <option value="National">National</option>
+                <option value="International">International</option>
+                <option value="Sports">Sports</option>
+                <option value="Economy">Economy</option>
+        </select>
+    
+    <div *ngIf="title.touched && title.errors && title.errors['required']">
+        Title is required.
+    </div>  
+
+    <div *ngIf="title.touched && title.errors && title.errors['minlength']">
+        Title is required with a minimum of 10 characters and a maximum length of 50 characters.
+    </div>  
+   
+    <div *ngIf="subtitle.touched && subtitle.errors && subtitle.errors['required']">
+        Subtitle is required.
+    </div>  
+
+    <div *ngIf="subtitle.touched && subtitle.errors && subtitle.errors['minlength']">
+        Subtitle is required with minimum of 10 characters a maximum length of 50 characters.
+    </div>  
+
+    <div *ngIf="abstract.touched && abstract.errors && abstract.errors['required']">
+        Abstract is required..
+    </div> 
+   
+    <div *ngIf="abstract.touched && abstract.errors && abstract.errors['minlength']">
+        Abstract is required with minimum of 10 characters.
+    </div> 
+
+      <button
+      type="button"
+      (click)="publishArticle()"
+      [disabled]="!articleForm.form.valid">
+      Publish
+    </button>
+
+    <button
+  type="button"
+  (click)="resetForm()">
+  Reset
+</button>
+
+
+</form>
+<p>{{ message }}</p>
+<p>Title preview: {{ article.title }}</p>
+<p>Subtitle preview: {{ article.subtitle }}</p>
+<p>Abstract preview: {{ article.abstract }}</p>
+<p>Category preview: {{ article.category }}</p>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-4" *ngFor="let article of articles">
+        <div class="card">
+          <div class="card-body">
+            <h2>{{ article.title }}</h2>
+            <h5>{{ article.subtitle }}</h5>
+            <p>{{ article.abstract }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
