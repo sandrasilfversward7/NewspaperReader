@@ -7,7 +7,7 @@ export class Highlight {
   constructor(private el: ElementRef) { } // för att referera det specifika elementet
 
   @HostListener('focus') onFocus() { //fokus när man går in i fältet
-    this.highlight('yellow');
+    this.highlight('green');
 }
   @HostListener('blur')onBlur() {
     this.highlight('');
