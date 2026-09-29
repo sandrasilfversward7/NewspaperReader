@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Article } from '../interfaces/article';
 import { Highlight } from '../directives/highlight';
-import { NewspaperLocalService } from '../services/newspaper-local-service';
+import { NewsService } from '../services/news';
 import { FilterPipe } from '../pipes/filter-pipe';
 
 @Component({
@@ -22,7 +22,7 @@ export class NewspaperWithService implements OnInit {
 
   @ViewChild('articleForm') articleForm: any; //referens till formuläret
 
-  constructor(private newspaperService: NewspaperLocalService) { //dependency injection
+  constructor(private newsService: NewsService) {//dependency injection
     this.article = {
       id: 0,
       title: "",
@@ -34,7 +34,9 @@ export class NewspaperWithService implements OnInit {
   }
 
   ngOnInit(): void {
-    this.articles = this.newspaperService.getArticles(); //hämtar artiklarna från servicen och sparar dem i komponentens articles.
+    this.newsService.getArticles().subscribe(articles => {
+      this.articles = articles;
+    });
   }
 
   resetForm() {
@@ -42,12 +44,8 @@ export class NewspaperWithService implements OnInit {
   }
 
   publishArticle() {
-    this.newspaperService.addArticle({ ...this.article });
-    this.message = `The article[${this.article.title}] has been published`;
-    this.articleForm.reset();
   }
 
   viewArticle(id: number) {
-    this.selectedArticle = this.newspaperService.getArticle(id);
   }
 }
