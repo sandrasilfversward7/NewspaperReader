@@ -1,123 +1,32 @@
-
-<form #articleForm = "ngForm" class="container py-4">
-    <label class="form-label fw-semibold">Title</label>
-    <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="article.title"
-        name="title"
-        #title="ngModel"
-        minlength="10"
-        maxlength="50"
-        required
-        appHighlight
-        [ngClass]="title.valid || title.pristine ? '' : 'bg-danger'"
-        >
-
-<label class="form-label fw-semibold">Subtitle</label>    <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="article.subtitle"
-        name="subtitle"
-        #subtitle="ngModel"
-        minlength="10"
-        maxlength="50"
-        required
-        appHighlight
-        [ngClass]="subtitle.valid || subtitle.pristine ? '' : 'bg-danger'"
-        >
-
-    <label class="form-label fw-semibold">Abstract</label>
-    <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="article.abstract"
-        name="abstract"
-        #abstract="ngModel"
-        minlength="10"
-        required 
-        appHighlight
-        [ngClass]="abstract.valid || abstract.pristine ? '' : 'bg-danger'"
-        >
-
-    <label class="form-label fw-semibold"> Body </label>
-    <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="article.body"
-        name="body"
-        #body="ngModel"
-        appHighlight
-        >
-
-    <label class="form-label fw-semibold" >Category</label>
-        <select
-            name="category"
-            #category="ngModel"
-            class= "form-select"
-            appHighlight            
-            [(ngModel)]="article.category">
-                <option value="National">National</option>
-                <option value="International">International</option>
-                <option value="Sports">Sports</option>
-                <option value="Economy">Economy</option>
-        </select>
-    
-    <div class="text-danger small mt-1"  *ngIf="title.touched && title.errors && title.errors['required']">
-        Title is required.
-    </div>  
-
-    <div class="text-danger small mt-1" *ngIf="title.touched && title.errors && title.errors['minlength']">
-        Title is required with a minimum of 10 characters and a maximum length of 50 characters.
-    </div>  
-   
-    <div class="text-danger small mt-1" *ngIf="subtitle.touched && subtitle.errors && subtitle.errors['required']">
-        Subtitle is required.
-    </div>  
-
-    <div class="text-danger small mt-1" *ngIf="subtitle.touched && subtitle.errors && subtitle.errors['minlength']">
-        Subtitle is required with minimum of 10 characters a maximum length of 50 characters.
-    </div>  
-
-    <div class="text-danger small mt-1" *ngIf="abstract.touched && abstract.errors && abstract.errors['required']">
-        Abstract is required..
-    </div> 
-   
-    <div class="text-danger small mt-1" *ngIf="abstract.touched && abstract.errors && abstract.errors['minlength']">
-        Abstract is required with minimum of 10 characters.
-    </div> 
-
-        <div class="d-flex gap-3 mt-4">
-      <button type="button" class="btn btn-primary" (click)="publishArticle()" [disabled]="!articleForm.form.valid">Publish</button>
-      <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">Reset</button>
-      </div>
-
-
-</form>
-<div class="container mt-3 mb-4">
-  <p *ngIf="message" class="text-success fw-semibold">{{ message }}</p>
-  <div class="card bg-light border-0">
-    <div class="card-body">
-      <h6 class="text-muted text-uppercase fw-semibold mb-3">Live Preview</h6>
-      <p class="mb-1"><span class="fw-semibold">Title:</span> {{ article.title }}</p>
-      <p class="mb-1"><span class="fw-semibold">Subtitle:</span> {{ article.subtitle }}</p>
-      <p class="mb-1"><span class="fw-semibold">Abstract:</span> {{ article.abstract }}</p>
-      <p class="mb-0"><span class="fw-semibold">Category:</span> {{ article.category }}</p>
-    </div>
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold mb-0">📰 Articles</h1>
+    <a routerLink="/new" class="btn btn-primary">+ New Article</a>
   </div>
-</div>
 
-<div class="container">
-    <div class="row g-3">
-      <div class="col-4" *ngFor="let article of articles">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <span class="badge bg-secondary mb-2">{{ article.category }}</span>
-            <h2>{{ article.title }}</h2>
-            <h5>{{ article.subtitle }}</h5>
-            <p>{{ article.abstract }}</p>
+  <p *ngIf="message" class="text-success fw-semibold">{{ message }}</p>
+
+  <div class="row g-3">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let article of articles">
+      <div class="card h-100 shadow-sm">
+        <img
+          *ngIf="article.thumbnail_data"
+          [src]="'data:' + article.thumbnail_media_type + ';base64,' + article.thumbnail_data"
+          class="card-img-top"
+          style="height: 180px; object-fit: cover;"
+          alt="{{ article.title }}">
+        <div class="card-body d-flex flex-column">
+          <span class="badge bg-secondary mb-2 align-self-start">{{ article.category }}</span>
+          <h5 class="card-title fw-bold">{{ article.title }}</h5>
+          <h6 class="card-subtitle text-muted mb-2">{{ article.subtitle }}</h6>
+            <p class="card-text small" [innerHTML]="article.abstract"></p>
+          <div class="d-flex gap-2 mt-auto">
+            <a [routerLink]="['/article', article.id]" class="btn btn-sm btn-outline-primary">View</a>
+            <a [routerLink]="['/edit', article.id]" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <button class="btn btn-sm btn-outline-danger ms-auto" (click)="deleteArticle(article)">Delete</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
