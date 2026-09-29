@@ -13,5 +13,7 @@ export interface Article {
   body: string;
   abstract: string;
   category: string;
+  thumbnail_data?: string;
+  thumbnail_media_type?: string;
   }
 
