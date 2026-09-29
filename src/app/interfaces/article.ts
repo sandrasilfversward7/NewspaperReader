@@ -7,10 +7,11 @@
 
 
 export interface Article {
-    title: string;
-    subtitle: string;
-    body: string;
-    abstract: string;
-    category: string;
+  id: number; //tillagd för excerise 3
+  title: string;
+  subtitle: string;
+  body: string;
+  abstract: string;
+  category: string;
   }
 

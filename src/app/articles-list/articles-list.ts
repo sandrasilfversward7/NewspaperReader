@@ -11,13 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './articles-list.css',
 })
 export class ArticlesList implements OnInit {
-  article!: Article; 
+  article: Article; 
   articles: Article[];
   message: string = "";
 
   @ViewChild('articleForm') articleForm: any; 
   constructor() {  
     this.article = { //variablen som tillhör den här komponenten
+    id: 0, //tillagd för excersie 3 
     title: "",
     subtitle: "",
     body: "",
@@ -27,6 +28,7 @@ export class ArticlesList implements OnInit {
 
     this.articles = [
       {
+        id: 1,
         title: "Article 1",
         subtitle: "Subtitle 1",
         abstract: "Abstract 1",
@@ -34,6 +36,7 @@ export class ArticlesList implements OnInit {
         category: "National"
       },
       {
+        id: 2, 
         title: "Article 2",
         subtitle: "Subtitle 2",
         abstract: "Abstract 2",
@@ -42,6 +45,7 @@ export class ArticlesList implements OnInit {
       },
 
       {
+        id: 3,
         title: "Article 3",
         subtitle: "Subtitle 3",
         abstract: "Abstract 3",

@@ -107,17 +107,47 @@
   </div>
 </div>
 
+<div class="container mb-3">
+    <label class="form-label fw-semibold">Filter articles</label>
+  
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="term">
+  </div>
+
 <div class="container">
     <div class="row g-3">
-      <div class="col-4" *ngFor="let article of articles">
+      <div class="col-4" *ngFor="let article of articles | filter:term">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
             <span class="badge bg-secondary mb-2">{{ article.category }}</span>
             <h2>{{ article.title }}</h2>
             <h5>{{ article.subtitle }}</h5>
             <p>{{ article.abstract }}</p>
+
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="viewArticle(article.id)">
+              View
+            </button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedArticle" class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>{{ selectedArticle.title }}</h3>
+  
+        <p><strong>Id:</strong> {{ selectedArticle.id }}</p>
+        <p><strong>Subtitle:</strong> {{ selectedArticle.subtitle }}</p>
+        <p><strong>Abstract:</strong> {{ selectedArticle.abstract }}</p>
+        <p><strong>Body:</strong> {{ selectedArticle.body }}</p>
+        <p><strong>Category:</strong> {{ selectedArticle.category }}</p>
       </div>
     </div>
   </div>

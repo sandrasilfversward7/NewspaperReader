@@ -29,6 +29,7 @@ export class NewspaperReader implements OnInit {
 
   ngOnInit(): void { //lifecycle - metod. Körs automatiskt när componenten har skapats och Angular initialiserar den 
     this.article = { //variablen som tillhör den här komponenten
+      id: 0,
       title: "",
       subtitle: "",
       body: "",
