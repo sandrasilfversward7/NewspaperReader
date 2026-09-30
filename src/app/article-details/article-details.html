@@ -1,11 +1,45 @@
-@if (article) {
-    <h1>{{ article.title }}</h1>
-    <h2>{{ article.subtitle }}</h2>
+
+@if (article) { <!-- Since it takes forever to load -->
+
+  <div class="container py-4">
+  <!--Go back cutton-->
+  <button class="btn btn-outline-secondary mb-3" (click)="goBack()"> ← Back to all articles </button>
+  <h1 class="fw-bold mb-2"> {{ article.title }} </h1> 
+
   
-    <p>{{ article.abstract }}</p>
-  
-    <p>
-      <strong>Category:</strong>
-      {{ article.category }}
-    </p>
+  <h4 class="text-muted mb-3"> {{ article.subtitle }} </h4>
+  <span class="badge bg-secondary mb-3">
+    {{ article.category }}
+  </span>
+  <p class="lead" [innerHTML]="article.abstract"></p>
+
+  <!--Image -->
+  @if (article.image_data) {
+    <img
+      [src]="'data:' + article.image_media_type + ';base64,' + article.image_data"
+      class="img-fluid rounded mb-4"
+      alt="{{ article.title }}">
   }
+
+  <!--Body-->
+  <div class="mt-4">
+    <div [innerHTML]="article.body"></div>
+  </div>
+
+  <!--Last modified information-->
+  <div class="text-muted small mb-3">
+    <span>
+      <strong>Last modified:</strong>
+      {{ article.update_date }}
+    </span>
+    <span class="ms-3">
+      <strong>Modified by:</strong>
+      {{ article.username }}
+    </span>
+  </div>
+  
+</div>
+
+<!--Default for loading the page-->
+} @else {
+  <h1>Loading article...</h1>}

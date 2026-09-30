@@ -18,6 +18,7 @@ constructor(private newsService: NewsService) {}
 
 ngOnInit(): void {
   this.newsService.getArticles().subscribe(articles => {
+    console.log(articles);
     this.articles = articles;
   });
 }
