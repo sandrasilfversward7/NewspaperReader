@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Article } from '../interfaces/article';
 import { RouterLink } from '@angular/router';
 import { NewsService } from '../services/news';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-articles-list',
@@ -14,11 +15,20 @@ export class ArticlesList implements OnInit {
   articles: Article[] = [];
 message: string = '';
 
-constructor(private newsService: NewsService) {}
+constructor(private newsService: NewsService, private cdr: ChangeDetectorRef) {}
 
 ngOnInit(): void {
-  this.newsService.getArticles().subscribe(articles => {
-    this.articles = articles;
+  this.message = 'Loading...';
+  this.newsService.getArticles().subscribe({
+    next: articles => {
+      this.articles = articles;
+      this.message = '';
+      this.cdr.detectChanges();
+    },
+    error: err => {
+      this.message = 'Error: ' + err.status + ' ' + err.message;
+      this.cdr.detectChanges();
+    }
   });
 }
 
