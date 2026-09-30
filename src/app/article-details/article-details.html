@@ -26,18 +26,21 @@
     <div [innerHTML]="article.body"></div>
   </div>
 
+
+
   <!--Last modified information-->
-  <div class="text-muted small mb-3">
-    <span>
-      <strong>Last modified:</strong>
-      {{ article.update_date }}
-    </span>
-    <span class="ms-3">
-      <strong>Modified by:</strong>
-      {{ article.username }}
-    </span>
-  </div>
-  
+  <div class="border-top mt-5 pt-3 text-muted small">
+  <span>
+    <strong>Last modified:</strong>
+    {{ article.update_date }}
+  </span>
+
+  <span class="ms-3">
+    <strong>Modified by:</strong>
+    {{ article.username }}
+  </span>
+</div>
+
 </div>
 
 <!--Default for loading the page-->
