@@ -3,6 +3,7 @@ import { Article } from '../interfaces/article';
 import { RouterLink } from '@angular/router';
 import { NewsService } from '../services/news';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,22 +16,27 @@ export class ArticlesList implements OnInit {
   articles: Article[] = [];
 message: string = '';
 
-constructor(private newsService: NewsService, private cdr: ChangeDetectorRef) {}
+constructor(private newsService: NewsService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {}
 
 ngOnInit(): void {
-  this.message = 'Loading...';
-  this.newsService.getArticles().subscribe({
-    next: articles => {
-      this.articles = articles;
-      this.message = '';
-      this.cdr.detectChanges();
-    },
-    error: err => {
-      this.message = 'Error: ' + err.status + ' ' + err.message;
-      this.cdr.detectChanges();
-    }
+  this.route.queryParams.subscribe(params => {
+    const category = params['category'] || '';
+    const search = params['search'] || '';
+    this.newsService.getArticles().subscribe({
+      next: articles => {
+        this.articles = articles
+          .filter(a => !category || a.category === category)
+          .filter(a => !search || a.title.toLowerCase().includes(search.toLowerCase()));
+        this.cdr.detectChanges();
+      },
+      error: err => {
+        this.message = 'Error: ' + err.status;
+        this.cdr.detectChanges();
+      }
+    });
   });
 }
+
 
 deleteArticle(article: Article): void {
   if (confirm('Are you sure you want to delete this article?')) {

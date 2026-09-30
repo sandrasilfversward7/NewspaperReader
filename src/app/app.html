@@ -1,1 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <a class="navbar-brand" routerLink="/">📰 News</a>
+  <div class="d-flex flex-wrap gap-2 me-auto ms-3">
+    <a routerLink="/" [queryParams]="{}" class="btn btn-sm btn-outline-light">All</a>
+    <a routerLink="/" [queryParams]="{category: 'National'}" class="btn btn-sm btn-outline-light">National</a>
+    <a routerLink="/" [queryParams]="{category: 'Economy'}" class="btn btn-sm btn-outline-light">Economy</a>
+    <a routerLink="/" [queryParams]="{category: 'Sports'}" class="btn btn-sm btn-outline-light">Sports</a>
+    <a routerLink="/" [queryParams]="{category: 'Technology'}" class="btn btn-sm btn-outline-light">Technology</a>
+  </div>
+  <input class="form-control w-auto" type="text" placeholder="Search..." [(ngModel)]="searchText" (ngModelChange)="onSearch($event)">
+</nav>
+
 <router-outlet></router-outlet>
