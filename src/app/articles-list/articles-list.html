@@ -10,15 +10,29 @@
   <div class="row g-3">
     <div class="col-12 col-md-6 col-lg-4" *ngFor="let article of articles">
       <div class="card h-100 shadow-sm">
+
+        <!--Thumbnail pic -->
+        <a
+          *ngIf="article.thumbnail_image"
+          [routerLink]="['/article', article.id]">
+
         <img
-          *ngIf="article.thumbnail_data"
-          [src]="'data:' + article.thumbnail_media_type + ';base64,' + article.thumbnail_data"
+          [src]="'data:' + article.thumbnail_media_type + ';base64,' + article.thumbnail_image"
           class="card-img-top"
-          style="height: 180px; object-fit: cover;"
+          style="height: 180px; object-fit: contain;"
           alt="{{ article.title }}">
+      </a>
+
         <div class="card-body d-flex flex-column">
           <span class="badge bg-secondary mb-2 align-self-start">{{ article.category }}</span>
-          <h5 class="card-title fw-bold">{{ article.title }}</h5>
+
+          <!--Title with routerlink-->
+          <h5 class="card-title fw-bold">
+            <a [routerLink]="['/article', article.id]">
+              {{ article.title }}
+            </a>
+          </h5>
+
           <h6 class="card-subtitle text-muted mb-2">{{ article.subtitle }}</h6>
             <p class="card-text small" [innerHTML]="article.abstract"></p>
           <div class="d-flex gap-2 mt-auto">
