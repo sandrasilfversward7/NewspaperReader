@@ -19,6 +19,7 @@ message: string = '';
 constructor(private newsService: NewsService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {}
 
 ngOnInit(): void {
+<<<<<<< HEAD
   this.route.queryParams.subscribe(params => {
     const category = params['category'] || '';
     const search = params['search'] || '';
@@ -34,6 +35,11 @@ ngOnInit(): void {
         this.cdr.detectChanges();
       }
     });
+=======
+  this.newsService.getArticles().subscribe(articles => {
+    console.log(articles);
+    this.articles = articles;
+>>>>>>> 2a87db73eb7e7e94cde2de20b73b6e0906003002
   });
 }
 

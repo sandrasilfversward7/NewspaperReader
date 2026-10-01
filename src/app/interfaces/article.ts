@@ -15,5 +15,9 @@ export interface Article {
   category: string;
   thumbnail_data?: string;
   thumbnail_media_type?: string;
+  image_data?: string;
+  image_media_type?: string;
+  update_date?: string;
+  username?: string;
   }
 
