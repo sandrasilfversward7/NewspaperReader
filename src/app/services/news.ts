@@ -1,7 +1,10 @@
+//Service responsible for communicating with API
+//handles retrieving, creating, updating and deleting articles
+
+//Imports
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -9,15 +12,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class NewsService {
-
   private newsUrl = 'http://sanger.dia.fi.upm.es/pui-rest-news/articles';  // URL to web api
   private articleUrl = 'http://sanger.dia.fi.upm.es/pui-rest-news/article';  // URL to web api
-
   constructor(private http: HttpClient) {
     this.APIKEY = ""; 
   }
 
-  // Set the corresponding APIKEY according to the received by email
+  //API keys
   private APIKEY: string | null;
   private APIKEY_ANON = 'APKG_4527_3_12';
 

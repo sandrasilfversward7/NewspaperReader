@@ -47,8 +47,10 @@ and includes a button to delete an article
 
   <!--Title -->
           <h5 class="card-title fw-bold">
-            <a [routerLink]="['/article', article.id]">
-              {{ article.title }}
+            <a 
+              [routerLink]="['/article', article.id]"
+              class="text-dark text-decoration-none">
+                {{ article.title }}
             </a>
           </h5>
 
