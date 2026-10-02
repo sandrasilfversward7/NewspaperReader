@@ -3,6 +3,7 @@
 //allows the user to go back to the previous page
 
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../services/news'; 
 import { Article } from '../interfaces/article';
@@ -10,7 +11,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-article-details',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './article-details.html',
   styleUrl: './article-details.css',
 })
