@@ -50,14 +50,22 @@
     </div>
 
     <!-- IMAGE -->
+<!-- IMAGE -->
 <div class="mb-3">
-    <label class="form-label">Image</label>
-  
-    <input
-      type="file"
-      class="form-control"
-      (change)="fileChangeEvent($event)">
-  </div>
+  <label class="form-label">Image</label>
+
+  <input
+    type="file"
+    class="form-control"
+    (change)="fileChangeEvent($event)">
+
+  <img
+    [hidden]="!article.image_data"
+    [src]="'data:' + article.image_media_type + ';base64,' + article.image_data"
+    class="img-fluid mt-2"
+    style="max-height: 200px;"
+    alt="Current article image">
+</div>
   
     <!-- ABSTRACT -->
     <div class="mb-3">
@@ -77,6 +85,7 @@
       <textarea
         class="form-control"
         rows="8"
+        name="body"
         [(ngModel)]="article.body">
       </textarea>
     </div>
