@@ -48,6 +48,7 @@ export class ArticlesList implements OnInit {
       this.newsService.deleteArticle(article).subscribe(() => {
         this.message = 'Article deleted successfully.';
         this.newsService.getArticles().subscribe(a => this.articles = a);
+        this.cdr.detectChanges();
       });
     }
   }

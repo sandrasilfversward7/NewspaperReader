@@ -1,0 +1,104 @@
+<div class="container py-4">
+
+    <h1>Article Edition</h1>
+    <p class="text-success fw-semibold">
+        {{ message }}
+      </p>
+      <form #articleForm="ngForm"> <!--4 validation-->
+  
+    <!-- TITLE -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input
+  type="text"
+  class="form-control"
+  name="title"
+  [(ngModel)]="article.title"
+  required>
+    </div>
+  
+    <!-- SUBTITLE -->
+    <div class="mb-3">
+      <label class="form-label">Subtitle</label>
+      <input
+  type="text"
+  class="form-control"
+  name="subtitle"
+  [(ngModel)]="article.subtitle"
+  required>
+    </div>
+  
+    <!-- CATEGORY -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select
+  class="form-select"
+  name="category"
+  [(ngModel)]="article.category"
+  required>
+
+  <option value="">Select category</option>
+  <option value="National">National</option>
+  <option value="Economy">Economy</option>
+  <option value="sports">Sports</option>
+  <option value="Technology">Technology</option>
+  <option value="International">International</option>
+
+</select>
+
+      
+    </div>
+
+    <!-- IMAGE -->
+<div class="mb-3">
+    <label class="form-label">Image</label>
+  
+    <input
+      type="file"
+      class="form-control"
+      (change)="fileChangeEvent($event)">
+  </div>
+  
+    <!-- ABSTRACT -->
+    <div class="mb-3">
+      <label class="form-label">Abstract</label>
+      <textarea
+      class="form-control"
+      rows="3"
+      name="abstract"
+      [(ngModel)]="article.abstract"
+      required>
+    </textarea>
+    </div>
+  
+    <!-- BODY -->
+    <div class="mb-3">
+      <label class="form-label">Body</label>
+      <textarea
+        class="form-control"
+        rows="8"
+        [(ngModel)]="article.body">
+      </textarea>
+    </div>
+
+    <div class="mt-3 d-flex gap-2">
+
+        <button
+  type="button"
+  class="btn btn-primary"
+  (click)="saveArticle()"
+  [disabled]="articleForm.invalid || !article.image_data"
+  >
+  {{ id ? 'Save' : 'Create' }}
+</button>
+      
+        <a
+          routerLink="/"
+          class="btn btn-secondary">
+          Back
+        </a>
+      
+      </div>
+    </form>
+  
+  </div>

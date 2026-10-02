@@ -7,7 +7,7 @@
 
 
 export interface Article {
-  id: number; //tillagd för excerise 3
+  id?: number;
   title: string;
   subtitle: string;
   body: string;

@@ -6,6 +6,8 @@
     <a routerLink="/" [queryParams]="{category: 'Economy'}" class="btn btn-sm btn-outline-light">Economy</a>
     <a routerLink="/" [queryParams]="{category: 'Sports'}" class="btn btn-sm btn-outline-light">Sports</a>
     <a routerLink="/" [queryParams]="{category: 'Technology'}" class="btn btn-sm btn-outline-light">Technology</a>
+    <a routerLink="/" [queryParams]="{category: 'International'}" class="btn btn-sm btn-outline-light">International</a>
+
   </div>
   <input class="form-control w-auto" type="text" placeholder="Search..." [(ngModel)]="searchText" (ngModelChange)="onSearch($event)">
 </nav>
