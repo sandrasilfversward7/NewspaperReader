@@ -58,9 +58,11 @@
             appHighlight            
             [(ngModel)]="article.category">
                 <option value="National">National</option>
-                <option value="International">International</option>
                 <option value="Sports">Sports</option>
                 <option value="Economy">Economy</option>
+                <option value="Technology">Technology</option>
+                <option value="International">International</option>
+
         </select>
     
     <div class="text-danger small mt-1"  *ngIf="title.touched && title.errors && title.errors['required']">
@@ -129,7 +131,7 @@
             <button
               type="button"
               class="btn btn-outline-primary"
-              (click)="viewArticle(article.id)">
+              (click)="viewArticle(article.id!)">
               View
             </button>
           </div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
