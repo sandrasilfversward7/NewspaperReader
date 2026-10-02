@@ -60,7 +60,9 @@ export class ArticlesList implements OnInit {
     if (confirm('Are you sure you want to delete this article?')) { //Confirmation message
       this.newsService.deleteArticle(article).subscribe(() => { //Deleted through Newsservice
         this.message = 'Article deleted successfully.';
-        this.newsService.getArticles().subscribe(a => this.articles = a); //Get updated list of articles
+        this.newsService.getArticles().subscribe(a => {
+          this.articles = a;
+          this.cdr.markForCheck();}); 
       });
     }
   }
