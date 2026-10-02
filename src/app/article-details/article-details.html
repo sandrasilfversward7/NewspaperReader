@@ -1,48 +1,67 @@
+<!--
+This HTML template displays the details of one article. It shows the title, subtitle, category, 
+abstract, image, body and information of when and by who the article was modified.
+The article can only be viewed here, not edited
+-->
 
-@if (article) { <!-- Since it takes forever to load -->
+<!--Article information-->
+<div 
+  *ngIf="article; else loading" 
+  class="container py-4">
 
-  <div class="container py-4">
-  <!--Go back cutton-->
-  <button class="btn btn-outline-secondary mb-3" (click)="goBack()"> ← Back to all articles </button>
-  <h1 class="fw-bold mb-2"> {{ article.title }} </h1> 
+<!--Go back cutton-->
+  <button 
+    class="btn btn-outline-secondary mb-3" 
+    (click)="goBack()"> 
+    ← Back to all articles 
+  </button>
 
-  
-  <h4 class="text-muted mb-3"> {{ article.subtitle }} </h4>
+<!--Title-->
+  <h1 class="fw-bold mb-2"> 
+    {{ article.title }} 
+  </h1> 
+
+<!--Subtitle-->
+  <h4 class="text-muted mb-3"> 
+    {{ article.subtitle }} 
+  </h4>
+
+<!--Category-->
   <span class="badge bg-secondary mb-3">
     {{ article.category }}
   </span>
+
+<!--Abstract-->
   <p class="lead" [innerHTML]="article.abstract"></p>
 
-  <!--Image -->
-  @if (article.image_data) {
-    <img
-      [src]="'data:' + article.image_media_type + ';base64,' + article.image_data"
-      class="img-fluid rounded mb-4"
-      alt="{{ article.title }}">
-  }
+<!--Image -->
+  <img
+    *ngIf="article.image_data"
+    [src]="'data:' + article.image_media_type + ';base64,' + article.image_data"
+    class="img-fluid rounded mb-4"
+    alt="{{ article.title }}">
 
-  <!--Body-->
+<!--Body-->
   <div class="mt-4">
     <div [innerHTML]="article.body"></div>
   </div>
 
-
-
-  <!--Last modified information-->
+<!--Last modified information-->
   <div class="border-top mt-5 pt-3 text-muted small">
-  <span>
-    <strong>Last modified:</strong>
-    {{ article.update_date }}
-  </span>
+    <span>
+      <strong>Last modified:</strong>
+      {{ article.update_date }}
+    </span>
 
-  <span class="ms-3">
-    <strong>Modified by:</strong>
-    {{ article.username }}
-  </span>
+    <span class="ms-3">
+      <strong>Modified by:</strong>
+      {{ article.username }}
+    </span>
+  </div>
 </div>
 
-</div>
 
 <!--Default for loading the page-->
-} @else {
-  <h1>Loading article...</h1>}
+<ng-template #loading>
+  <h1>Loading article...</h1>
+</ng-template>
