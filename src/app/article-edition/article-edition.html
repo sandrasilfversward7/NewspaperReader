@@ -10,6 +10,13 @@ It also shows feedback messages and a loading message while an article is being 
   *ngIf="articleLoaded; else loading" 
   class="container py-4">
 
+  <!--Back to all article button-->
+  <a
+    routerLink="/"
+    class="btn btn-outline-secondary mb-3">
+    ← Back to all articles
+  </a>
+
   <h1>{{ id ? 'Edit Article' : 'Create Article' }}</h1>
   
   <!--Feedback-->
@@ -146,12 +153,6 @@ It also shows feedback messages and a loading message while an article is being 
         {{ id ? 'Save' : 'Create' }}
       </button>
       
-      <!--Back to main page-->
-        <a
-          routerLink="/"
-          class="btn btn-secondary">
-            Back
-        </a>
       </div>
     </form>
 </div>
