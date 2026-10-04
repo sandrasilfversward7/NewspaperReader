@@ -41,7 +41,11 @@ export class ArticlesList implements OnInit {
           //Filter
           this.articles = articles
             .filter(a => !category || a.category === category)
-            .filter(a => !search || a.title.toLowerCase().includes(search.toLowerCase()));
+            .filter(a => !search ||
+              a.title.toLowerCase().includes(search.toLowerCase()) ||
+              a.subtitle.toLowerCase().includes(search.toLowerCase()) ||
+              a.abstract.toLowerCase().includes(search.toLowerCase())
+            );
             
             this.cdr.markForCheck(); //Tell angular that view needs to be checked and updated
         },

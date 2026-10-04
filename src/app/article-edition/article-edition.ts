@@ -79,6 +79,8 @@ export class ArticleEdition {
       this.newsService.updateArticle(this.article).subscribe(() => {
         this.message = 'Article saved successfully!';
         this.cdr.markForCheck();
+
+        window.scrollTo({ top: 0, behavior: 'smooth' }); //scrolls user up to see Feedback message
       });
   
     //Create new article
@@ -86,6 +88,8 @@ export class ArticleEdition {
       this.newsService.createArticle(this.article).subscribe(() => {
         this.message = 'Article created successfully!';
         this.cdr.markForCheck();
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
   }

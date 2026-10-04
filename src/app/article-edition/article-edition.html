@@ -11,9 +11,11 @@ It also shows feedback messages and a loading message while an article is being 
   class="container py-4">
 
   <h1>{{ id ? 'Edit Article' : 'Create Article' }}</h1>
-  <p class="text-success fw-semibold">
-        {{ message }}
-  </p>
+  
+  <!--Feedback-->
+  <div *ngIf="message" class="alert alert-success mt-3">
+    {{ message }}
+  </div>
   
 <!--Articleform with validation-->
   <form #articleForm="ngForm"> 
